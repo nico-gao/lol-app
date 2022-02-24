@@ -1,5 +1,7 @@
 # Table of Contents
 
+[Install](#install)
+
 ## Install
 
 1. 
