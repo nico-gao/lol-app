@@ -13,9 +13,11 @@ const SummonerSearch = () => {
   };
 
   const searchHandler = () => {
-    const summonerName = inputRef.current.value.replace(/\s/g, '%20');
-    navigate(`/summoner/${summonerName}`);
-    inputRef.current.value = "";
+    if (inputRef.current.value.length !== 0) {
+      const summonerName = inputRef.current.value.replace(/\s/g, "%20");
+      navigate(`/summoner/${summonerName}`);
+      inputRef.current.value = "";
+    }
   };
 
   return (

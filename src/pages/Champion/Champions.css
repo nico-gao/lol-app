@@ -1,0 +1,10 @@
+.champions {
+  display: flex;
+  flex-direction: column;
+}
+
+.champions__wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}

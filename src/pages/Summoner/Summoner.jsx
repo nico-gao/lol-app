@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import { useParams } from "react-router-dom";
-// import SummonerProfile from "../../components/Summoner/SummonerProfile/SummonerProfile";
+import SummonerProfile from "../../components/Summoner/SummonerProfile/SummonerProfile";
 
 import useHttp from "../../hooks/useHttp";
 
@@ -10,9 +10,11 @@ const Summoner = () => {
   const [summonerId, setSummonerId] = useState();
   const [summonerData, setSummonerData] = useState();
   const { fetchData: fetchId } = useHttp();
-  const { fetchData } = useHttp();
+  const { loading, error, fetchData } = useHttp();
 
   useEffect(() => {
+
+    console.log("in summoner page useEffect");
     const idResponseHandler = (data) => {
       setSummonerId(data.id);
     };
@@ -43,8 +45,7 @@ const Summoner = () => {
       <p>Summoner Page</p>
       <p>{name}</p>
       <p>{summonerId}</p>
-      <p>{JSON.stringify(summonerData)}</p>
-      {/* <SummonerProfile summonerData={summonerData} loading={loading} error={error} /> */}
+      <SummonerProfile summonerData={summonerData} loading={loading} error={error} />
     </div>
   );
 };

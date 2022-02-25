@@ -1,0 +1,16 @@
+.champion {
+  display: flex;
+  flex-direction: column;
+
+  position: relative;
+}
+
+.champion-skins__wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.champion-skin__overlay {
+  position: absolute;
+}

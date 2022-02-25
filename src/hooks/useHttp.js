@@ -1,32 +1,31 @@
-import { useState, useCallback } from "react";
+import { useCallback } from "react";
 
 const useHttp = () => {
-  const [error, setError] = useState(null);
-  const [loading, setloading] = useState(false);
-
   const fetchData = useCallback(
-    ({ url, method = "GET", body = null, headers = {} }, applyData) => {
-      setloading(true);
+    (
+      { url, method = "GET", body = null, headers = {} },
+      applyData,
+      errorHandler
+    ) => {
       fetch(url, {
         method,
         body,
         headers,
       })
-        .then((res) => res.json())
+        .then((res) => {
+          return res.json();
+        })
         .then((res) => {
           applyData(res);
         })
         .catch((err) => {
-          setError(err.message || "Something went wrong!");
-        })
-        .finally(() => {
-          setloading(false);
+          errorHandler(err.message || "Something went wrong!");
         });
     },
     []
   );
 
-  return { error, loading, fetchData };
+  return { fetchData };
 };
 
 export default useHttp;
