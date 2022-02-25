@@ -14,8 +14,9 @@ const ChampionCard = ({ children, data }) => {
           <img src={data.img} alt={data.name} onClick={data.onClick} />
         )}
       </div>
-      <p>{data.name}</p>
-      {children}
+      <div className="card__info">
+        {children}
+      </div>
     </div>
   );
 };

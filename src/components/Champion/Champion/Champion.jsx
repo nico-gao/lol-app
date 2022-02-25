@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import useHttp from "../../../hooks/useHttp";
+import SkinDetail from "../../../pages/Skin/SkinDetail";
 import ChampionContext from "../../../store/champion-context";
 import ChampionCard from "../ChampionCard/ChampionCard";
 
@@ -32,6 +33,10 @@ const Champion = () => {
     }
   }, [loading, fetchData, summary, name, addChampionsDetail]);
 
+  if (championDetail) {
+    console.log(championDetail);
+  }
+
   if (loading) return "loading...";
   if (error) return <p>{error}</p>;
 
@@ -43,6 +48,7 @@ const Champion = () => {
           {championDetail
             ? championDetail.skins?.map((skin) => {
                 const skinData = {
+                  type: "skin",
                   name: skin.name,
                   img: skin.loadScreenPath,
                   overlay: true,
@@ -51,7 +57,11 @@ const Champion = () => {
                     setToggleSkinOverlay(true);
                   },
                 };
-                return <ChampionCard data={skinData} />;
+                return (
+                  <ChampionCard data={skinData}>
+                    <SkinDetail data={skin} />
+                  </ChampionCard>
+                );
               })
             : "No data loaded"}
         </ul>

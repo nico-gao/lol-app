@@ -1,0 +1,16 @@
+.skin__detail {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.skin__detail-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.skin__detail-rarity {
+  display: flex;
+  align-items: center;
+}
