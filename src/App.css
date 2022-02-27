@@ -1,5 +1,7 @@
 .p__nunito {
   font-family: var(--font-base);
+  font-weight: 600;
+  font-size: 18px;
   color: var(--gold);
 }
 
