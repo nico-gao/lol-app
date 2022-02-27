@@ -12,37 +12,43 @@ const ChampionContext = React.createContext({
   summary: [],
   loading: true,
   error: null,
-  championsDetail: [],
-  addChampionsDetail: () => {},
+  championDataById: {},
+  getChampionById: () => {},
 });
 
 export const ChampionContextProvider = (props) => {
   const [championsSummary, setChampionsSummary] = useState([]);
-  const [championsDetail, setChampionsDetail] = useState([]);
+  const [championDataById, setChampionDataById] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const { fetchData: fetchSummaryData } = useHttp();
 
-  const addChampionDetail = (data) => {
-    setChampionsDetail((prev) => {
-      prev.push(data);
-    });
+
+  const getChampionById = (id) => {
+    if (!loading) {
+      return championDataById[id];
+    }
   };
 
   useEffect(() => {
     const championsSummaryResponseHandler = (data) => {
       const loadedChampionsSummary = [];
+      const championIdData = {};
       for (const champion of data) {
-        loadedChampionsSummary.push({
-          id: champion.id,
-          name: champion.name,
-          alias: champion.alias,
+        const { id, name, alias } = champion;
+        const detail = {
+          id: id,
+          name: name,
+          alias: alias,
           img: `${championIconBaseUrl}/${champion.id}.png`,
           path: `/champion/${champion.name}`,
-        });
+        };
+        loadedChampionsSummary.push(detail);
+        championIdData[id] = { ...detail };
       }
       loadedChampionsSummary.shift();
       setChampionsSummary(loadedChampionsSummary);
+      setChampionDataById(championIdData);
       setLoading(false);
     };
 
@@ -61,8 +67,8 @@ export const ChampionContextProvider = (props) => {
         summary: championsSummary,
         loading,
         error,
-        championsDetail,
-        addChampionDetail,
+        championDataById,
+        getChampionById,
       }}
     >
       {props.children}

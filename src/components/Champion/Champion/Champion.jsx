@@ -9,7 +9,7 @@ import "./Champion.css";
 
 const Champion = () => {
   const { name } = useParams();
-  const { summary, loading, error, addChampionsDetail } =
+  const { summary, loading, error, getChampionById } =
     useContext(ChampionContext);
   const { fetchData } = useHttp();
   const [championDetail, setChampionDetail] = useState(null);
@@ -19,10 +19,9 @@ const Champion = () => {
   useEffect(() => {
     if (!loading) {
       const championData = summary.find((data) => data.name === name);
-
+      console.log(getChampionById(championData.id));
       const handler = (data) => {
         setChampionDetail(data);
-        addChampionsDetail(data);
       };
       fetchData(
         {
@@ -31,7 +30,7 @@ const Champion = () => {
         handler
       );
     }
-  }, [loading, fetchData, summary, name, addChampionsDetail]);
+  }, [loading, fetchData, summary, name, getChampionById]);
 
   if (championDetail) {
     console.log(championDetail);

@@ -1,20 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 
 import { useParams } from "react-router-dom";
 import SummonerProfile from "../../components/Summoner/SummonerProfile/SummonerProfile";
 
 import useHttp from "../../hooks/useHttp";
+import ChampionContext from "../../store/champion-context";
 
 const Summoner = () => {
   const { name } = useParams();
   const [summonerId, setSummonerId] = useState();
+  const [summonerRawData, setSummonerRawData] = useState();
   const [summonerData, setSummonerData] = useState();
   const { fetchData: fetchId } = useHttp();
-  const { loading, error, fetchData } = useHttp();
+  const { fetchData } = useHttp();
+
+  const { getChampionById } = useContext(ChampionContext);
 
   useEffect(() => {
-
-    console.log("in summoner page useEffect");
     const idResponseHandler = (data) => {
       setSummonerId(data.id);
     };
@@ -28,24 +30,36 @@ const Summoner = () => {
 
   useEffect(() => {
     const dataResponseHandler = (data) => {
-      setSummonerData(data);
-    }
+      setSummonerRawData(data);
+    };
     const getDataConfig = {
       url: `https://na1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/${summonerId}?api_key=${process.env.REACT_APP_RIOT_API_KEY}`,
     };
 
     if (summonerId) {
-      console.log("got id");
       fetchData(getDataConfig, dataResponseHandler);
     }
   }, [summonerId, fetchData]);
 
+  useEffect(() => {
+    if (summonerRawData) {
+      let detailedData = [];
+      for (const data of summonerRawData) {
+        const champion = getChampionById(data.championId);
+        detailedData.push({
+          ...champion,
+          chestGranted: data.chestGranted,
+          championLevel: data.championLevel,
+          championPoints: data.championPoints,
+        });
+      }
+      setSummonerData(detailedData);
+    }
+  }, [summonerRawData, getChampionById]);
+
   return (
     <div className="summoner">
-      <p>Summoner Page</p>
-      <p>{name}</p>
-      <p>{summonerId}</p>
-      <SummonerProfile summonerData={summonerData} loading={loading} error={error} />
+      <SummonerProfile summonerData={summonerData} />
     </div>
   );
 };
