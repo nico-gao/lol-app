@@ -5,7 +5,7 @@
   position: relative;
 }
 
-.champion-skins__wrapper {
+.champion__skins-wrapper {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;

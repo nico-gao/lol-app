@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import useHttp from "../../../hooks/useHttp";
 import SkinDetail from "../../../pages/Skin/SkinDetail";
 import ChampionContext from "../../../store/champion-context";
-import ChampionCard from "../ChampionCard/ChampionCard";
+import Card from "../../Card/Card";
 
 import "./Champion.css";
 
@@ -44,7 +44,7 @@ const Champion = () => {
     <div className="champion">
       Champion {name}
       {!toggleSkinOverlay && (
-        <ul className="champion-skins__wrapper">
+        <ul className="champion__skins-wrapper">
           {championDetail
             ? championDetail.skins?.map((skin) => {
                 const skinData = {
@@ -58,9 +58,9 @@ const Champion = () => {
                   },
                 };
                 return (
-                  <ChampionCard data={skinData}>
+                  <Card data={skinData} style={{ width: "250px" }}>
                     <SkinDetail data={skin} />
-                  </ChampionCard>
+                  </Card>
                 );
               })
             : "No data loaded"}

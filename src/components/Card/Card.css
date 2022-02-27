@@ -1,0 +1,14 @@
+.card__wrapper {
+  margin: 0 3px 3px 2px;
+  border: 1.8px solid var(--blueGrey);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.card__img img {
+  width: 100%;
+  object-fit: cover;
+}

@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import ChampionCard from "../../components/Champion/ChampionCard/ChampionCard";
+import Card from "../../components/Card/Card";
 import ChampionContext from "../../store/champion-context";
 
 import "./Champions.css";
@@ -17,10 +17,11 @@ const Champions = () => {
 
   return (
     <div className="champions">
-      <p>Champions Page</p>
       <ul className="champions__wrapper">
         {summary?.map((champion) => (
-          <ChampionCard data={champion} />
+          <Card data={champion} style={{width: '130px'}} >
+            <p className="p__info">{champion.name}</p>
+          </Card>
         ))}
       </ul>
     </div>

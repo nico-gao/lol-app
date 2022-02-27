@@ -1,20 +1,25 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import images from "../../constants/images";
 import SummonerSearch from "../Summoner/SummonerSearch/SummonerSearch";
+
+import "./Navbar.css";
 
 const Navbar = () => {
   return (
-    <div>
-      <div className="navbar__logo">
-        <p>LOL</p>
-      </div>
+    <div className="navbar">
+      <Link to="/">
+        <div className="navbar__logo">
+          <img src={images.chest} alt="hextech chest" />
+        </div>
+      </Link>
       <div className="navbar__search">
         <SummonerSearch />
       </div>
       <ul className="navbar__links">
-        <li>
-          <NavLink to="/">Champions</NavLink>
-        </li>
+        <NavLink to="/">
+          <p className="p__nunito">Champions</p>
+        </NavLink>
       </ul>
     </div>
   );

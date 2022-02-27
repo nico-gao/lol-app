@@ -1,6 +1,30 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&family=Nunito+Sans:wght@300;400;600;700&family=Rubik:wght@300;400;500;700&display=swap");
+
+:root {
+  --bg: #000f19;
+  --black: #000205;
+  --white: #fff8e0;
+  --darkBlue: #252b33;
+  --gold: #cebe91;
+  --darkGold: #856327;
+  --blueGrey: #424249;
+  --font-base: 'Nunito Sans', sans-serif;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
   scroll-behavior: smooth;
+
+  background: var(--bg);
+}
+
+a {
+  color: unset;
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
 }

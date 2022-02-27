@@ -1,16 +1,30 @@
 .skin__detail {
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 .skin__detail-info {
+  margin: 0 10px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }
 
+.skin__detail-info img {
+  width: 25px;
+}
+
 .skin__detail-rarity {
   display: flex;
   align-items: center;
+}
+
+.skin__name {
+  padding: 0 1rem;
+}
+.skin__name p {
+  text-align: center;
 }

@@ -1,0 +1,30 @@
+.summoner__search {
+  height: 30px;
+  border: 2px solid var(--darkGold);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.summoner__search input {
+  width: 250px;
+  height: 100%;
+  font-size: 1rem;
+  font-family: var(--font-base);
+  color: var(--gold);
+  background: var(--black);
+
+  border-style: none;
+}
+
+.summoner__search button {
+  height: 100%;
+  width: max-content;
+  padding: 0 5px;
+  color: var(--gold);
+  font-weight: 400;
+  background: var(--darkBlue);
+
+  border-style: none;
+  border-left: 2px solid var(--darkGold);
+}

@@ -1,9 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const ChampionCard = ({ children, data }) => {
+import "./Card.css";
+
+const ChampionCard = ({ children, data, style }) => {
   return (
-    <div className="championCard__wrapper">
+    <div className="card__wrapper" style={style}>
       <div className="card__img">
         {!data.overlay && (
           <Link to={data.path}>

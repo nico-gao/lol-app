@@ -1,0 +1,13 @@
+.p__nunito {
+  font-family: var(--font-base);
+  color: var(--gold);
+}
+
+.p__info {
+  font-family: var(--font-base);
+  color: var(--white);
+}
+
+.main {
+  padding: 0 1rem 0 1rem;
+}

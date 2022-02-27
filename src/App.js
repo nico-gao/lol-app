@@ -7,10 +7,12 @@ import Champions from "./pages/Champion/Champions";
 import Champion from "./components/Champion/Champion/Champion";
 import Summoner from "./pages/Summoner/Summoner";
 
+import "./App.css";
+
 
 const App = () => {
   return (
-    <div>
+    <div className="app">
       <Navbar />
       <div className="main">
         <Routes>

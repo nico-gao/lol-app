@@ -2,6 +2,8 @@ import React, { useRef } from "react";
 
 import { useNavigate } from "react-router-dom";
 
+import "./SummonerSearch.css";
+
 const SummonerSearch = () => {
   const navigate = useNavigate();
   const inputRef = useRef();
@@ -21,14 +23,14 @@ const SummonerSearch = () => {
   };
 
   return (
-    <div className="summonerSearch">
+    <div className="summoner__search">
       <input
         onKeyPress={keypressHandler}
         ref={inputRef}
         placeholder="Enter a summoner name"
         type="text"
       />
-      <button onClick={searchHandler}>Search</button>
+      <button onClick={searchHandler} >Search</button>
     </div>
   );
 };

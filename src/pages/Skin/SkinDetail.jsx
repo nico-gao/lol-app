@@ -30,10 +30,14 @@ const SkinDetail = ({ data }) => {
     <div className="skin__detail">
       <div className="skin__detail-info">
         {rarityIcon && <img src={rarityIcon} alt="rarity" />}
-        <p>{data.name}</p>
-        {data.name !== "Original" && <p>{data.cost}</p>}
+        <div className="skin__name">
+          <p className="p__info">{data.name}</p>
+        </div>
+        {data.name !== "Original" && <p className="p__info">{data.cost}</p>}
       </div>
-      <div className="skin__detail-release__date">{data.release}</div>
+      <div className="skin__detail-release__date">
+        <p className="p__info">{data.release}</p>
+      </div>
     </div>
   );
 };
