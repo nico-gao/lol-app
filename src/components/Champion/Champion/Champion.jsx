@@ -61,18 +61,28 @@ const Champion = () => {
                 },
               };
               return (
-                <Card data={skinData} style={{ width: "250px" }} key={skinData.id}>
+                <Card
+                  data={skinData}
+                  style={{ width: "250px" }}
+                  key={skinData.id}
+                >
                   <SkinDetail data={skin} />
                 </Card>
               );
             })
           : "No data loaded"}
       </ul>
+
+      {/* {toggleSkinOverlay && (
+        <div className="overlay__close">
+        </div>
+      )} */}
       {toggleSkinOverlay && (
         <div className="champion-skin__overlay">
           <img src={skin.url} alt={skin.name} className="overlay__bg" />
           <img src={skin.url} alt={skin.name} className="overlay__img" />
           <AiOutlineClose onClick={() => setToggleSkinOverlay(false)} />
+
         </div>
       )}
     </div>

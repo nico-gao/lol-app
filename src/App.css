@@ -12,5 +12,5 @@
 
 .main {
   padding: 0 1rem 0 1rem;
-  min-height: 100vh;
+  background: var(--bg);
 }

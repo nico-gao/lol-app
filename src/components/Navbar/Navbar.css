@@ -1,7 +1,7 @@
 .navbar {
   height: 80px;
-  margin-bottom: 1rem;
   padding: 0 1rem;
+  background: var(--bg);
 
   display: flex;
   flex-direction: row;
