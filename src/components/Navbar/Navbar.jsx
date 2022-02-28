@@ -11,6 +11,7 @@ const Navbar = () => {
       <Link to="/">
         <div className="navbar__logo">
           <img src={images.chest} alt="hextech chest" />
+          <h1 className="p__nunito">HexSpace</h1>
         </div>
       </Link>
       <div className="navbar__search">

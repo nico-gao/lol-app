@@ -1,5 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { AiOutlineClose } from "react-icons/ai";
+
 import useHttp from "../../../hooks/useHttp";
 import SkinDetail from "../../../pages/Skin/SkinDetail";
 import ChampionContext from "../../../store/champion-context";
@@ -41,34 +43,36 @@ const Champion = () => {
 
   return (
     <div className="champion">
-      Champion {name}
-      {!toggleSkinOverlay && (
-        <ul className="champion__skins-wrapper">
-          {championDetail
-            ? championDetail.skins?.map((skin) => {
-                const skinData = {
-                  type: "skin",
-                  name: skin.name,
-                  img: skin.loadScreenPath,
-                  overlay: true,
-                  onClick: () => {
-                    setSkin({ name: skin.name, url: skin.splashPath });
-                    setToggleSkinOverlay(true);
-                  },
-                };
-                return (
-                  <Card data={skinData} style={{ width: "250px" }}>
-                    <SkinDetail data={skin} />
-                  </Card>
-                );
-              })
-            : "No data loaded"}
-        </ul>
-      )}
+      <ul className="champion__skins-wrapper">
+        {championDetail
+          ? championDetail.skins?.map((skin) => {
+              const skinData = {
+                type: "skin",
+                name: skin.name,
+                id: skin.id,
+                img: skin.loadScreenPath,
+                overlay: true,
+                onClick: () => {
+                  setSkin({
+                    name: skin.name,
+                    url: skin.uncenteredSplashPath,
+                  });
+                  setToggleSkinOverlay(true);
+                },
+              };
+              return (
+                <Card data={skinData} style={{ width: "250px" }} key={skinData.id}>
+                  <SkinDetail data={skin} />
+                </Card>
+              );
+            })
+          : "No data loaded"}
+      </ul>
       {toggleSkinOverlay && (
         <div className="champion-skin__overlay">
-          <button onClick={() => setToggleSkinOverlay(false)}>Close</button>
-          <img src={skin.url} alt={skin.name} />
+          <img src={skin.url} alt={skin.name} className="overlay__bg" />
+          <img src={skin.url} alt={skin.name} className="overlay__img" />
+          <AiOutlineClose onClick={() => setToggleSkinOverlay(false)} />
         </div>
       )}
     </div>

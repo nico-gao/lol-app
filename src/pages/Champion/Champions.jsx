@@ -19,7 +19,7 @@ const Champions = () => {
     <div className="champions">
       <ul className="champions__wrapper">
         {summary?.map((champion) => (
-          <Card data={champion} style={{width: '130px'}} >
+          <Card data={champion} style={{width: '130px'}} key={champion.id} >
             <p className="p__info">{champion.name}</p>
           </Card>
         ))}

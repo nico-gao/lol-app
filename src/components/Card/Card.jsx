@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import "./Card.css";
 
-const ChampionCard = ({ children, data, style }) => {
+const Card = ({ children, data, style }) => {
   return (
     <div className="card__wrapper" style={style}>
       <div className="card__img">
@@ -23,4 +23,4 @@ const ChampionCard = ({ children, data, style }) => {
   );
 };
 
-export default ChampionCard;
+export default Card;
