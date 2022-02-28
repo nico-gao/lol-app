@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import images from "../../constants/images";
+import images from "../../../constants/images";
 
 import "./SkinDetail.css";
 

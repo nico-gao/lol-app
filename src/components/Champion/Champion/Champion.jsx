@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { AiOutlineClose } from "react-icons/ai";
 
 import useHttp from "../../../hooks/useHttp";
-import SkinDetail from "../../../pages/Skin/SkinDetail";
+import SkinDetail from "../Skin/SkinDetail";
 import ChampionContext from "../../../store/champion-context";
 import Card from "../../Card/Card";
 
