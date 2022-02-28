@@ -8,6 +8,7 @@ import Champion from "./components/Champion/Champion/Champion";
 import Summoner from "./pages/Summoner/Summoner";
 
 import "./App.css";
+import Footer from "./components/Footer/Footer";
 
 
 const App = () => {
@@ -22,6 +23,7 @@ const App = () => {
           <Route path="*" component={<p>404</p>}/>
         </Routes>
       </div>
+      <Footer />
     </div>
   );
 };

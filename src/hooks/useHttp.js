@@ -19,7 +19,11 @@ const useHttp = () => {
           applyData(res);
         })
         .catch((err) => {
-          errorHandler(err.message || "Something went wrong!");
+          if (errorHandler) {
+            errorHandler(err.message || "Something went wrong!");
+          } else {
+            return "Something went wrong";
+          }
         });
     },
     []

@@ -1,0 +1,12 @@
+.footer {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer__legal {
+  font-family: var(--font-base);
+  color: rgb(173, 173, 173);
+}

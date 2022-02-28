@@ -15,7 +15,7 @@ const SummonerProfile = ({ summonerData }) => {
       ) : (
         <ul className="champions__wrapper">
           {summonerData.map((champion) => (
-            <Card data={champion} style={{ width: "150px" }}>
+            <Card data={champion} style={{ width: "150px" }} key={champion.id}>
               <div>
                 <p className="p__info">{champion.name}</p>
                 <p className="p__info">Mastery: {champion.championLevel}</p>

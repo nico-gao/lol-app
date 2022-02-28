@@ -22,7 +22,7 @@ const Summoner = () => {
     };
 
     const getIdConfig = {
-      url: `https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${name}?api_key=${process.env.REACT_APP_RIOT_API_KEY}`,
+      url: `http://localhost:8000/summoner/id/${name}`,
     };
 
     fetchId(getIdConfig, idResponseHandler);
@@ -33,8 +33,8 @@ const Summoner = () => {
       setSummonerRawData(data);
     };
     const getDataConfig = {
-      url: `https://na1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/${summonerId}?api_key=${process.env.REACT_APP_RIOT_API_KEY}`,
-    };
+      url: `http://localhost:8000/summoner/mastery/${summonerId}`
+      };
 
     if (summonerId) {
       fetchData(getDataConfig, dataResponseHandler);
