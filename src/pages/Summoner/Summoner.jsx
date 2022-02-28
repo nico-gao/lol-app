@@ -22,7 +22,7 @@ const Summoner = () => {
     };
 
     const getIdConfig = {
-      url: `http://localhost:8000/summoner/id/${name}`,
+      url: `${process.env.REACT_APP_BACKEND_URL}/summoner/id/${name}`,
     };
 
     fetchId(getIdConfig, idResponseHandler);
@@ -33,7 +33,7 @@ const Summoner = () => {
       setSummonerRawData(data);
     };
     const getDataConfig = {
-      url: `http://localhost:8000/summoner/mastery/${summonerId}`
+      url: `${process.env.REACT_APP_BACKEND_URL}/summoner/mastery/${summonerId}`
       };
 
     if (summonerId) {
