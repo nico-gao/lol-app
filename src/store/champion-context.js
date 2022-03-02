@@ -1,74 +1,98 @@
+import axios from "axios";
 import React, { useState, useEffect } from "react";
 
-import useHttp from "../hooks/useHttp";
-
-const championsSummaryUrl =
-  "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-summary.json";
-
-const championIconBaseUrl =
-  "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons";
+import urls from "../constants/urls";
 
 const ChampionContext = React.createContext({
-  summary: [],
   loading: true,
   error: null,
-  championDataById: {},
-  getChampionById: () => {},
+  championData: {},
+  champions: [],
+  detailLoaded: {},
+  fetchChampionDetail: () => {},
+  sortChampionData: () => {},
 });
 
 export const ChampionContextProvider = (props) => {
-  const [championsSummary, setChampionsSummary] = useState([]);
-  const [championDataById, setChampionDataById] = useState({});
+  const [championData, setChampionData] = useState({});
+  const [champions, setChampions] = useState({});
+  const [detailLoaded, setDetailLoaded] = useState({});
+
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const { fetchData: fetchSummaryData } = useHttp();
 
-
-  const getChampionById = (id) => {
-    if (!loading) {
-      return championDataById[id];
+  const championsSummaryResponseHandler = (data) => {
+    const fetchedChampionData = {};
+    const championArray = [];
+    const championDetailLoaded = {};
+    for (const champion of data) {
+      const { id, name, alias } = champion;
+      if (name === "None") {
+        continue;
+      }
+      const detail = {
+        id: id,
+        name: name,
+        alias: alias,
+        img: `${urls.championIcon}/${champion.id}.png`,
+        path: `/champion/${champion.name}`,
+      };
+      fetchedChampionData[name] = { ...detail };
+      championArray.push(detail);
+      championDetailLoaded[name] = false;
     }
+    setChampionData(fetchedChampionData);
+    setChampions(championArray);
+    setDetailLoaded(championDetailLoaded);
+    setLoading(false);
+    console.log(fetchedChampionData);
   };
 
   useEffect(() => {
-    const championsSummaryResponseHandler = (data) => {
-      const loadedChampionsSummary = [];
-      const championIdData = {};
-      for (const champion of data) {
-        const { id, name, alias } = champion;
-        const detail = {
-          id: id,
-          name: name,
-          alias: alias,
-          img: `${championIconBaseUrl}/${champion.id}.png`,
-          path: `/champion/${champion.name}`,
-        };
-        loadedChampionsSummary.push(detail);
-        championIdData[id] = { ...detail };
-      }
-      loadedChampionsSummary.shift();
-      setChampionsSummary(loadedChampionsSummary);
-      setChampionDataById(championIdData);
-      setLoading(false);
-    };
+    axios
+      .get(urls.championSummary)
+      .then((res) => {
+        const summary = res.data;
+        championsSummaryResponseHandler(summary);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(err);
+      });
+  }, []);
 
-    fetchSummaryData(
-      {
-        url: championsSummaryUrl,
-      },
-      championsSummaryResponseHandler,
-      setError
-    );
-  }, [fetchSummaryData]);
+  const fetchChampionDetail = (championName, resHandler = () => {}) => {
+    if (!loading && !detailLoaded[championName]) {
+      const championAlias = championData[championName].alias;
+      axios
+        .get(`${urls.championDetail}/${championAlias}`)
+        .then((res) => {
+          const championDetailData = res.data;
+          let championDataCopy = championData;
+          championDataCopy[championName] = {
+            ...championDataCopy[championName],
+            skins: championDetailData.skins,
+          };
+          const detailLoadedCopy = detailLoaded;
+          detailLoadedCopy[championName] = true;
+          setChampionData(championDataCopy);
+          setDetailLoaded(detailLoadedCopy);
+          console.log(detailLoadedCopy);
+          console.log(championDataCopy);
+          resHandler();
+        });
+    }
+  };
 
   return (
     <ChampionContext.Provider
       value={{
-        summary: championsSummary,
         loading,
         error,
-        championDataById,
-        getChampionById,
+        championData,
+        champions,
+        detailLoaded,
+        fetchChampionDetail,
       }}
     >
       {props.children}

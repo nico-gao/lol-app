@@ -5,20 +5,21 @@ import ChampionContext from "../../store/champion-context";
 import "./Champions.css";
 
 const Champions = () => {
-  const { summary, error, loading } = useContext(ChampionContext);
+  const { champions, error, loading } = useContext(ChampionContext);
 
   if (error) {
     return <h2>{error}</h2>;
   }
 
   if (loading) {
-    return <h2>Loading...</h2>;
+    return <h2 className="p__info">Loading...</h2>;
   }
+
 
   return (
     <div className="champions">
       <ul className="champions__wrapper">
-        {summary?.map((champion) => (
+        {champions?.map((champion) => (
           <Card data={champion} style={{width: '130px'}} key={champion.id} >
             <p className="p__info">{champion.name}</p>
           </Card>
