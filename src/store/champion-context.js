@@ -51,7 +51,6 @@ export const ChampionContextProvider = (props) => {
     setChampionId(championIdToName);
     setDetailLoaded(championDetailLoaded);
     setLoading(false);
-    console.log(fetchedChampionData);
   };
 
   useEffect(() => {
@@ -83,8 +82,6 @@ export const ChampionContextProvider = (props) => {
           detailLoadedCopy[championName] = true;
           setChampionData(championDataCopy);
           setDetailLoaded(detailLoadedCopy);
-          console.log(detailLoadedCopy);
-          console.log(championDataCopy);
           resHandler();
         });
     }
