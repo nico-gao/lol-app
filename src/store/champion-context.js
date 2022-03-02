@@ -8,14 +8,17 @@ const ChampionContext = React.createContext({
   error: null,
   championData: {},
   champions: [],
+  championId: {},
   detailLoaded: {},
   fetchChampionDetail: () => {},
   sortChampionData: () => {},
+  getChampionById: () => {},
 });
 
 export const ChampionContextProvider = (props) => {
   const [championData, setChampionData] = useState({});
   const [champions, setChampions] = useState({});
+  const [championId, setChampionId] = useState({});
   const [detailLoaded, setDetailLoaded] = useState({});
 
   const [loading, setLoading] = useState(true);
@@ -24,6 +27,7 @@ export const ChampionContextProvider = (props) => {
   const championsSummaryResponseHandler = (data) => {
     const fetchedChampionData = {};
     const championArray = [];
+    const championIdToName = {};
     const championDetailLoaded = {};
     for (const champion of data) {
       const { id, name, alias } = champion;
@@ -39,10 +43,12 @@ export const ChampionContextProvider = (props) => {
       };
       fetchedChampionData[name] = { ...detail };
       championArray.push(detail);
+      championIdToName[id] = name;
       championDetailLoaded[name] = false;
     }
     setChampionData(fetchedChampionData);
     setChampions(championArray);
+    setChampionId(championIdToName);
     setDetailLoaded(championDetailLoaded);
     setLoading(false);
     console.log(fetchedChampionData);
@@ -84,6 +90,12 @@ export const ChampionContextProvider = (props) => {
     }
   };
 
+  const getChampionById = (id) => {
+    const name = championId[id];
+    const data = championData[name];
+    return data;
+  }
+
   return (
     <ChampionContext.Provider
       value={{
@@ -91,8 +103,10 @@ export const ChampionContextProvider = (props) => {
         error,
         championData,
         champions,
+        championId,
         detailLoaded,
         fetchChampionDetail,
+        getChampionById,
       }}
     >
       {props.children}

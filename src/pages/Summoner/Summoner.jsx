@@ -1,48 +1,33 @@
 import React, { useState, useEffect, useContext } from "react";
-
 import { useParams } from "react-router-dom";
-import SummonerProfile from "../../components/Summoner/SummonerProfile/SummonerProfile";
+import axios from "axios";
 
-import useHttp from "../../hooks/useHttp";
+import Card from "../../components/Card/Card";
 import ChampionContext from "../../store/champion-context";
+
+import urls from "../../constants/urls";
 
 const Summoner = () => {
   const { name } = useParams();
-  const [summonerId, setSummonerId] = useState();
   const [summonerRawData, setSummonerRawData] = useState();
   const [summonerData, setSummonerData] = useState();
-  const { fetchData: fetchId } = useHttp();
-  const { fetchData } = useHttp();
 
-  const { getChampionById } = useContext(ChampionContext);
 
-  useEffect(() => {
-    const idResponseHandler = (data) => {
-      setSummonerId(data.id);
-    };
-
-    const getIdConfig = {
-      url: `${process.env.REACT_APP_BACKEND_URL}/summoner/id/${name}`,
-    };
-
-    fetchId(getIdConfig, idResponseHandler);
-  }, [name, fetchId]);
+  const { getChampionById, loading } = useContext(ChampionContext);
 
   useEffect(() => {
-    const dataResponseHandler = (data) => {
-      setSummonerRawData(data);
-    };
-    const getDataConfig = {
-      url: `${process.env.REACT_APP_BACKEND_URL}/summoner/mastery/${summonerId}`
-      };
-
-    if (summonerId) {
-      fetchData(getDataConfig, dataResponseHandler);
-    }
-  }, [summonerId, fetchData]);
+    axios
+      .get(`${urls.summonerId}/${name}`)
+      .then((res) => res.data)
+      .then((data) => {
+        axios.get(`${urls.summonerMastery}/${data.id}`).then((res) => {
+          setSummonerRawData(res.data);
+        });
+      });
+  }, [name]);
 
   useEffect(() => {
-    if (summonerRawData) {
+    if (summonerRawData && !loading) {
       let detailedData = [];
       for (const data of summonerRawData) {
         const champion = getChampionById(data.championId);
@@ -55,11 +40,28 @@ const Summoner = () => {
       }
       setSummonerData(detailedData);
     }
-  }, [summonerRawData, getChampionById]);
+  }, [loading, summonerRawData, getChampionById]);
+
+  if (loading) return <h2 className="p__info">Loading</h2>;
 
   return (
     <div className="summoner">
-      <SummonerProfile summonerData={summonerData} />
+      <ul className="champions__wrapper">
+          {summonerData?.map((champion) => (
+            <Card data={champion} style={{ width: "150px" }} key={champion.id}>
+              <div>
+                <p className="p__info">{champion.name}</p>
+                <p className="p__info">Mastery: {champion.championLevel}</p>
+              </div>
+              <div>
+                <p className="p__info">Points: {champion.championPoints}</p>
+                <p className="p__info">
+                  Chest : {champion.chestGranted ? "Yes" : "No"}
+                </p>
+              </div>
+            </Card>
+          ))}
+        </ul>
     </div>
   );
 };
