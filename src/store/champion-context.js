@@ -63,7 +63,7 @@ export const ChampionContextProvider = (props) => {
         setLoading(false);
       })
       .catch((err) => {
-        setError(err);
+        setError(err.response.data);
       });
   }, []);
 
