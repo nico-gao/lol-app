@@ -39,6 +39,7 @@ const Champion = () => {
 
   return (
     <div className="champion">
+      <h1 className="champion__name">{name}</h1>
       <ul className="champion__skins-wrapper">
         {skins?.map((skin) => {
           const skinData = {

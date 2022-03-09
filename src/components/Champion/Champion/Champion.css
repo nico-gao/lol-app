@@ -3,9 +3,16 @@
   display: flex;
   flex-direction: column;
 
-  padding-top: 2rem;
+  padding-top: 1rem;
 
   position: relative;
+}
+
+.champion__name {
+  color: var(--white);
+  margin: 0 0 1rem 1rem;
+  font-family: var(--font-base);
+  font-size: 35px;
 }
 
 .champion__skins-wrapper {

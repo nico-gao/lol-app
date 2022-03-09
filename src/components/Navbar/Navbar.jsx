@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import images from "../../constants/images";
 import SummonerSearch from "../Summoner/SummonerSearch/SummonerSearch";
 

@@ -46,6 +46,9 @@ export const ChampionContextProvider = (props) => {
       championIdToName[id] = name;
       championDetailLoaded[name] = false;
     }
+    console.log(championArray);
+    championArray.sort((a, b) => a.name < b.name ? -1 : 1);
+    console.log(championArray);
     setChampionData(fetchedChampionData);
     setChampions(championArray);
     setChampionId(championIdToName);
@@ -69,21 +72,19 @@ export const ChampionContextProvider = (props) => {
   const fetchChampionDetail = (championName, resHandler = () => {}) => {
     if (!loading && !detailLoaded[championName]) {
       const championAlias = championData[championName].alias;
-      axios
-        .get(`${urls.championDetail}/${championAlias}`)
-        .then((res) => {
-          const championDetailData = res.data;
-          let championDataCopy = championData;
-          championDataCopy[championName] = {
-            ...championDataCopy[championName],
-            skins: championDetailData.skins,
-          };
-          const detailLoadedCopy = detailLoaded;
-          detailLoadedCopy[championName] = true;
-          setChampionData(championDataCopy);
-          setDetailLoaded(detailLoadedCopy);
-          resHandler();
-        });
+      axios.get(`${urls.championDetail}/${championAlias}`).then((res) => {
+        const championDetailData = res.data;
+        let championDataCopy = championData;
+        championDataCopy[championName] = {
+          ...championDataCopy[championName],
+          skins: championDetailData.skins,
+        };
+        const detailLoadedCopy = detailLoaded;
+        detailLoadedCopy[championName] = true;
+        setChampionData(championDataCopy);
+        setDetailLoaded(detailLoadedCopy);
+        resHandler();
+      });
     }
   };
 
@@ -91,7 +92,7 @@ export const ChampionContextProvider = (props) => {
     const name = championId[id];
     const data = championData[name];
     return data;
-  }
+  };
 
   return (
     <ChampionContext.Provider

@@ -29,8 +29,10 @@ const SkinDetail = ({ data }) => {
   return (
     <div className="skin__detail">
       <div className="skin__detail-info">
-        {rarityIcon && <img src={rarityIcon} alt="rarity" />}
-        <div className="skin__name">
+        {rarityIcon ? <img src={rarityIcon} alt="rarity" /> : 
+        <div className="rarity__placeholder" />
+        }
+        <div className="skin__detail">
           <p className="p__info">{data.name}</p>
         </div>
         {data.name !== "Original" && <p className="p__info">{data.cost}</p>}

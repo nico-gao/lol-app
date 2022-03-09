@@ -6,6 +6,7 @@
   align-items: center;
 }
 .skin__detail-info {
+  min-width: 70%;
   margin: 0 10px;
   display: flex;
   flex-direction: row;
@@ -27,4 +28,9 @@
 }
 .skin__name p {
   text-align: center;
+}
+
+.rarity__placeholder {
+  width: 25px;
+  height: 25px;
 }
