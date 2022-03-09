@@ -8,20 +8,13 @@ import "./Navbar.css";
 const Navbar = () => {
   return (
     <div className="navbar">
-      <Link to="/">
-        <div className="navbar__logo">
-          <img src={images.chest} alt="hextech chest" />
-          <h1 className="p__nunito">HexSpace</h1>
-        </div>
+      <Link to="/" className="navbar__logo">
+        <img src={images.chest} alt="hextech chest" />
+        <h1 className="p__nunito">HexSpace</h1>
       </Link>
       <div className="navbar__search">
         <SummonerSearch />
       </div>
-      <ul className="navbar__links">
-        <NavLink to="/">
-          <li className="p__nunito">Champions</li>
-        </NavLink>
-      </ul>
     </div>
   );
 };

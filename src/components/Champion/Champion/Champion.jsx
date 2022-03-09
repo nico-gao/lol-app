@@ -56,7 +56,7 @@ const Champion = () => {
             },
           };
           return (
-            <Card data={skinData} style={{ width: "250px" }} key={skinData.id}>
+            <Card data={skinData} key={skinData.id}>
               <SkinDetail data={skin} />
             </Card>
           );

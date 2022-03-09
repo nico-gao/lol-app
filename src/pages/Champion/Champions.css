@@ -1,16 +1,20 @@
 .champions {
   width: 100%;
   padding-top: 1rem;
-  display: flex;
-  flex-direction: column;
+
 
   background: var(--bg);
 }
-
+/* 
 .champions__wrapper {
-  width: 100%;
+  width: 80vw;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
+} */
+
+.champions__wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr) );
 }

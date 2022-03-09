@@ -9,9 +9,8 @@
 }
 
 .champion__skins-wrapper {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 }
 
 .champion-skin__overlay {

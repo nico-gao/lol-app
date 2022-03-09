@@ -28,3 +28,9 @@
   border-style: none;
   border-left: 2px solid var(--darkGold);
 }
+
+@media screen and (max-width: 400px) {
+  .summoner__search input {
+    width: 70vw;
+  }
+}
