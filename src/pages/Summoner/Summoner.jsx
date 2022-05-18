@@ -6,7 +6,6 @@ import Card from "../../components/Card/Card";
 import ChampionContext from "../../store/champion-context";
 
 import urls from "../../constants/urls";
-import images from "../../constants/images";
 import "./Summoner.css";
 
 const Summoner = () => {

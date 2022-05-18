@@ -27,6 +27,7 @@
 
   border-style: none;
   border-left: 2px solid var(--darkGold);
+  cursor: pointer;
 }
 
 @media screen and (max-width: 400px) {
