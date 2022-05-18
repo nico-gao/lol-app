@@ -7,12 +7,14 @@ import ChampionContext from "../../store/champion-context";
 
 import urls from "../../constants/urls";
 import images from "../../constants/images";
+import "./Summoner.css";
 
 const Summoner = () => {
   const { name } = useParams();
   const [summonerRawData, setSummonerRawData] = useState();
   const [summonerData, setSummonerData] = useState();
   const [error, setError] = useState(null);
+  const [summonerName, setSummonerName] = useState("");
 
   const { getChampionById, loading } = useContext(ChampionContext);
 
@@ -21,9 +23,9 @@ const Summoner = () => {
       .get(`${urls.summonerId}/${name}`)
       .then((res) => res.data)
       .then((data) => {
+        setSummonerName(data.name);
         axios.get(`${urls.summonerMastery}/${data.id}`).then((res) => {
           setSummonerRawData(res.data);
-          console.log(res.data);
         });
       })
       .catch((err) => {
@@ -58,11 +60,18 @@ const Summoner = () => {
 
   return (
     <div className="summoner">
+      <div>
+        <h2 className="summoner__name">{summonerName}'s Profile</h2>
+      </div>
       <ul className="champions__wrapper">
         {summonerData?.map((champion) => (
           <Card data={champion} key={champion.id}>
             <div>
-              { champion.championLevel > 3 && <img src={images[`mastery${champion.championLevel}`]} style={{ width: "60px"}} />}
+              <img
+                className="mastery"
+                src={images[`mastery${champion.championLevel}`]}
+                alt={`mastery${champion.championLevel}`}
+              />
               <p className="p__info">{champion.name}</p>
               <p className="p__info">Mastery: {champion.championLevel}</p>
             </div>
@@ -71,7 +80,7 @@ const Summoner = () => {
                 Points: {champion.championPoints.toLocaleString()}
               </p>
               <p className="p__info">
-                Chest : {champion.chestGranted ? "Yes" : "No"}
+                Chest Aquired : {champion.chestGranted ? "Yes" : "No"}
               </p>
             </div>
           </Card>

@@ -1,3 +1,7 @@
+.app {
+  background: var(--bg);
+}
+
 .p__nunito {
   font-family: var(--font-base);
   font-weight: 600;

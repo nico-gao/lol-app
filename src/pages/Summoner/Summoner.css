@@ -1,0 +1,8 @@
+.summoner__name {
+  color: var(--white);
+  margin: 10px 0 0 5px;
+}
+
+.mastery {
+  width: 60px;
+}
