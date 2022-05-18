@@ -66,7 +66,7 @@ const Summoner = () => {
       <ul className="champions__wrapper">
         {summonerData?.map((champion) => (
           <Card data={champion} key={champion.id}>
-            <div>
+            <div className="champion__info-wrapper">
               <img
                 className="mastery"
                 src={images[`mastery${champion.championLevel}`]}
@@ -74,13 +74,11 @@ const Summoner = () => {
               />
               <p className="p__info">{champion.name}</p>
               <p className="p__info">Mastery: {champion.championLevel}</p>
-            </div>
-            <div>
               <p className="p__info">
-                Points: {champion.championPoints.toLocaleString()}
+                {champion.championPoints.toLocaleString()}
               </p>
               <p className="p__info">
-                Chest Aquired : {champion.chestGranted ? "Yes" : "No"}
+                Chest : {champion.chestGranted ? "Yes" : "No"}
               </p>
             </div>
           </Card>
