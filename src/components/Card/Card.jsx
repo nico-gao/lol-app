@@ -16,9 +16,7 @@ const Card = ({ children, data, style }) => {
           <img src={data.img} alt={data.name} onClick={data.onClick} />
         )}
       </div>
-      <div className="card__info">
-        {children}
-      </div>
+      <div className="card__info">{children}</div>
     </div>
   );
 };

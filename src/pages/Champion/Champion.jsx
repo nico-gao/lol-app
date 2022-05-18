@@ -2,13 +2,14 @@ import React, { useState, useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { AiOutlineClose } from "react-icons/ai";
 
-import SkinDetail from "../Skin/SkinDetail";
-import ChampionContext from "../../../store/champion-context";
-import Card from "../../Card/Card";
+import SkinDetail from "../../components/Champion/Skin/SkinDetail";
+import ChampionContext from "../../store/champion-context";
+import Card from "../../components/Card/Card";
 
 import "./Champion.css";
 
 const Champion = () => {
+  console.log("blah blah blah");
   const { name } = useParams();
   const { championData, detailLoaded, fetchChampionDetail, loading, error } =
     useContext(ChampionContext);

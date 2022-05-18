@@ -29,26 +29,27 @@ export const ChampionContextProvider = (props) => {
     const championArray = [];
     const championIdToName = {};
     const championDetailLoaded = {};
+    console.log(data);
     for (const champion of data) {
-      const { id, name, alias } = champion;
+      const { id, name, alias, roles } = champion;
       if (name === "None") {
         continue;
       }
       const detail = {
-        id: id,
-        name: name,
-        alias: alias,
+        id,
+        name,
+        alias,
         img: `${urls.championIcon}/${champion.id}.png`,
         path: `/champion/${champion.name}`,
+        roles,
       };
       fetchedChampionData[name] = { ...detail };
       championArray.push(detail);
       championIdToName[id] = name;
       championDetailLoaded[name] = false;
     }
-    console.log(championArray);
-    championArray.sort((a, b) => a.name < b.name ? -1 : 1);
-    console.log(championArray);
+    // console.log(championArray);
+    championArray.sort((a, b) => (a.name < b.name ? -1 : 1));
     setChampionData(fetchedChampionData);
     setChampions(championArray);
     setChampionId(championIdToName);
@@ -83,6 +84,8 @@ export const ChampionContextProvider = (props) => {
         detailLoadedCopy[championName] = true;
         setChampionData(championDataCopy);
         setDetailLoaded(detailLoadedCopy);
+        console.log(championData);
+
         resHandler();
       });
     }

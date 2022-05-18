@@ -28,15 +28,24 @@ const SkinDetail = ({ data }) => {
 
   return (
     <div className="skin__detail">
-      <div className="skin__detail-info">
-        {rarityIcon ? <img src={rarityIcon} alt="rarity" /> : 
-        <div className="rarity__placeholder" />
-        }
-        <div className="skin__detail">
+      <div className="skin__detail-wrapper">
+        {rarityIcon ? (
+          <img src={rarityIcon} alt="rarity" />
+        ) : (
+          <div className="rarity__placeholder" />
+        )}
+
+        <div className="skin__name">
           <p className="p__info">{data.name}</p>
         </div>
-        {data.name !== "Original" && <p className="p__info">{data.cost}</p>}
+
+        {data.name !== "Original" ? (
+          <p className="p__info">{data.cost}</p>
+        ) : (
+          <div className="cost__placeholder" />
+        )}
       </div>
+
       <div className="skin__detail-release__date">
         <p className="p__info">{data.release}</p>
       </div>

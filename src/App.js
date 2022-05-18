@@ -3,13 +3,12 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar/Navbar";
-import Champions from "./pages/Champion/Champions";
-import Champion from "./components/Champion/Champion/Champion";
+import Champions from "./pages/Champions/Champions";
+import Champion from "./pages/Champion/Champion";
 import Summoner from "./pages/Summoner/Summoner";
 
 import "./App.css";
 import Footer from "./components/Footer/Footer";
-
 
 const App = () => {
   return (
