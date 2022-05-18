@@ -1,6 +1,5 @@
 .navbar {
-  height: 80px;
-  padding: 0 1rem;
+  padding: 2px 1rem;
   background: var(--bg);
 
   display: flex;
@@ -14,7 +13,7 @@
 .navbar__logo {
   display: flex;
   align-items: center;
-  height: 80px;
+  height: 75px;
 }
 
 .navbar__logo img {
