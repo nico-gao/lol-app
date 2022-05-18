@@ -8,7 +8,3 @@
   grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
   gap: 10px;
 }
-
-.p__info {
-  padding: 2px 0;
-}

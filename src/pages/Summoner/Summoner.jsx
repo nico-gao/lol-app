@@ -65,13 +65,15 @@ const Summoner = () => {
       </div>
       <ul className="champions__wrapper">
         {summonerData?.map((champion) => (
-          <Card data={champion} key={champion.id}>
+          <Card
+            data={{
+              ...champion,
+              type: "summoner",
+              masteryLevel: champion.championLevel,
+            }}
+            key={champion.id}
+          >
             <div className="champion__info-wrapper">
-              <img
-                className="mastery"
-                src={images[`mastery${champion.championLevel}`]}
-                alt={`mastery${champion.championLevel}`}
-              />
               <p className="p__info">{champion.name}</p>
               <p className="p__info">Mastery: {champion.championLevel}</p>
               <p className="p__info">

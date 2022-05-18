@@ -1,5 +1,4 @@
 .card__wrapper {
-  margin: 0 3px 5px 3px;
   border: 2px solid var(--blueGrey);
   box-shadow: 0 0 2px 2px black;
 
@@ -15,15 +14,29 @@
 
 .card__img {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.card__img img {
+.card__img img:first-child {
   width: 100%;
   object-fit: cover;
   cursor: pointer;
 }
 
+.mastery {
+  width: 60px;
+}
+
 .card__info {
   width: 100%;
   text-align: center;
+  margin: 2px 5px;
+}
+
+@media screen and (max-width: 450px) {
+  .card__wrapper {
+    flex-direction: row;
+  }
 }
