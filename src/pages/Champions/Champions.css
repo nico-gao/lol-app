@@ -1,18 +1,15 @@
 .champions {
   width: 100%;
-  padding-top: 1rem;
-
-
   background: var(--bg);
 }
 
 .champions__wrapper {
+  padding-top: 1rem;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr) );
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
   gap: 10px;
 }
 
 .p__info {
-  text-align: center;
   padding: 2px 0;
 }

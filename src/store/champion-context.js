@@ -29,7 +29,7 @@ export const ChampionContextProvider = (props) => {
     const championArray = [];
     const championIdToName = {};
     const championDetailLoaded = {};
-    console.log(data);
+    // console.log(data);
     for (const champion of data) {
       const { id, name, alias, roles } = champion;
       if (name === "None") {
@@ -84,8 +84,6 @@ export const ChampionContextProvider = (props) => {
         detailLoadedCopy[championName] = true;
         setChampionData(championDataCopy);
         setDetailLoaded(detailLoadedCopy);
-        console.log(championData);
-
         resHandler();
       });
     }

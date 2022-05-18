@@ -6,6 +6,7 @@ import Card from "../../components/Card/Card";
 import ChampionContext from "../../store/champion-context";
 
 import urls from "../../constants/urls";
+import images from "../../constants/images";
 
 const Summoner = () => {
   const { name } = useParams();
@@ -16,20 +17,21 @@ const Summoner = () => {
   const { getChampionById, loading } = useContext(ChampionContext);
 
   useEffect(() => {
-      axios
-        .get(`${urls.summonerId}/${name}`)
-        .then((res) => res.data)
-        .then((data) => {
-          axios.get(`${urls.summonerMastery}/${data.id}`).then((res) => {
-            setSummonerRawData(res.data);
-          });
-        }).catch((err) => {
-          if (err.response) {
-            console.log(err.response.data);
-            setError(err.response.data);
-          }
+    axios
+      .get(`${urls.summonerId}/${name}`)
+      .then((res) => res.data)
+      .then((data) => {
+        axios.get(`${urls.summonerMastery}/${data.id}`).then((res) => {
+          setSummonerRawData(res.data);
+          console.log(res.data);
         });
-
+      })
+      .catch((err) => {
+        if (err.response) {
+          console.log(err.response.data);
+          setError(err.response.data);
+        }
+      });
   }, [name]);
 
   useEffect(() => {
@@ -60,11 +62,14 @@ const Summoner = () => {
         {summonerData?.map((champion) => (
           <Card data={champion} key={champion.id}>
             <div>
+              { champion.championLevel > 3 && <img src={images[`mastery${champion.championLevel}`]} style={{ width: "60px"}} />}
               <p className="p__info">{champion.name}</p>
               <p className="p__info">Mastery: {champion.championLevel}</p>
             </div>
             <div>
-              <p className="p__info">Points: {champion.championPoints}</p>
+              <p className="p__info">
+                Points: {champion.championPoints.toLocaleString()}
+              </p>
               <p className="p__info">
                 Chest : {champion.chestGranted ? "Yes" : "No"}
               </p>

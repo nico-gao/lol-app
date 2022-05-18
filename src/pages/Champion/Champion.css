@@ -80,6 +80,15 @@
   transform: translate(-30px, 30px);
 }
 
+.close-btn {
+  cursor: pointer;
+  fill: var(--gold);
+}
+
+.close-btn:hover {
+  fill: var(--white);
+}
+
 @media screen and (max-width: 1278px) {
   .overlay__img {
     width: 100%;

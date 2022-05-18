@@ -9,7 +9,6 @@ import Card from "../../components/Card/Card";
 import "./Champion.css";
 
 const Champion = () => {
-  console.log("blah blah blah");
   const { name } = useParams();
   const { championData, detailLoaded, fetchChampionDetail, loading, error } =
     useContext(ChampionContext);
@@ -73,7 +72,7 @@ const Champion = () => {
         <div className="champion-skin__overlay">
           <img src={skin.url} alt={skin.name} className="overlay__bg" />
           <img src={skin.url} alt={skin.name} className="overlay__img" />
-          <AiOutlineClose onClick={() => setToggleSkinOverlay(false)} />
+          <AiOutlineClose className="close-btn" onClick={() => setToggleSkinOverlay(false)} />
         </div>
       )}
     </div>
