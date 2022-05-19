@@ -9,6 +9,7 @@ const ChampionContext = React.createContext({
   championData: {},
   champions: [],
   championId: {},
+  championRoles: {},
   detailLoaded: {},
   fetchChampionDetail: () => {},
   sortChampionData: () => {},
@@ -19,6 +20,7 @@ export const ChampionContextProvider = (props) => {
   const [championData, setChampionData] = useState({});
   const [champions, setChampions] = useState({});
   const [championId, setChampionId] = useState({});
+  const [championRoles, setChampionRoles] = useState({});
   const [detailLoaded, setDetailLoaded] = useState({});
 
   const [loading, setLoading] = useState(true);
@@ -70,6 +72,13 @@ export const ChampionContextProvider = (props) => {
       });
   }, []);
 
+  useEffect(()=> {
+    axios.get(urls.championRoles)
+    .then((res)=>{
+      setChampionRoles(res.data);
+    })
+  },[])
+
   const fetchChampionDetail = (championName, resHandler = () => {}) => {
     if (!loading && !detailLoaded[championName]) {
       const championAlias = championData[championName].alias;
@@ -103,6 +112,7 @@ export const ChampionContextProvider = (props) => {
         championData,
         champions,
         championId,
+        championRoles,
         detailLoaded,
         fetchChampionDetail,
         getChampionById,

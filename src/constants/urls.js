@@ -10,6 +10,8 @@ const championSummary = `${baseUrl}/summary`;
 
 const championDetail = `${baseUrl}/champion`;
 
+const championRoles = `${baseUrl}/roles`;
+
 const championIcon =
   "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons";
 
@@ -23,6 +25,7 @@ const urls = {
   championIcon,
   summonerId,
   summonerMastery,
+  championRoles
 };
 
 export default urls;

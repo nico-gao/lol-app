@@ -2,6 +2,13 @@
   width: 100%;
 }
 
+.champions__nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 1rem;
+}
+
 .champions__wrapper {
   padding-top: 1rem;
   display: grid;

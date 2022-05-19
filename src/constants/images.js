@@ -13,6 +13,12 @@ import mastery5 from "../assets/mastery/mastery5.png";
 import mastery6 from "../assets/mastery/mastery6.png";
 import mastery7 from "../assets/mastery/mastery7.png";
 
+import top from "../assets/position-top.svg";
+import jungle from "../assets/position-jungle.svg";
+import middle from "../assets/position-middle.svg";
+import bottom from "../assets/position-bottom.svg";
+import utility from "../assets/position-utility.svg";
+
 
 const images = {
   epic,
@@ -27,6 +33,11 @@ const images = {
   mastery5,
   mastery6,
   mastery7,
+  top,
+  jungle,
+  middle,
+  bottom,
+  utility
 };
 
 export default images;
@@ -44,4 +55,9 @@ export {
   mastery5,
   mastery6,
   mastery7,
+  top,
+  jungle,
+  middle,
+  bottom,
+  utility
 };

@@ -1,0 +1,41 @@
+.role-selector {
+  display: flex;
+}
+
+.role-selector label {
+  width: 50px;
+  height: 50px;
+  padding: 2px;
+  border: 2px solid var(--darkGold);
+}
+
+.role-selector input {
+  display: none;
+}
+
+.role-selector img {
+  width: 100%;
+  opacity: 0.5;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.role-selector label:hover {
+  border-color: var(--white);
+}
+
+input[type="checkbox"]:checked + img {
+  opacity: 1;
+}
+
+.role-selector .selected {
+  border: 2px solid var(--white);
+}
+
+.role-selector label:first-child {
+  border-radius: 15% 0 0 15%;
+}
+
+.role-selector label:last-child {
+  border-radius: 0 15% 15% 0;
+}
