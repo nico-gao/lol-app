@@ -31,14 +31,6 @@ const Champion = () => {
             img: skin.loadScreenPath,
             index,
             path: `/champion/${name}/skins`,
-            // overlay: true,
-            // onClick: () => {
-            //   setSkin({
-            //     name: skin.name,
-            //     url: skin.uncenteredSplashPath,
-            //   });
-            //   setToggleSkinOverlay(true);
-            // },
           };
           return (
             <Card data={skinData} key={skinData.id}>
@@ -47,18 +39,6 @@ const Champion = () => {
           );
         })}
       </ul>
-
-      {/* {toggleSkinOverlay && (
-        <div className="overlay__close">
-        </div>
-      )} */}
-      {/* {toggleSkinOverlay && (
-        <div className="champion-skin__overlay">
-          <img src={skin.url} alt={skin.name} className="overlay__bg" />
-          <img src={skin.url} alt={skin.name} className="overlay__img" />
-          <AiOutlineClose className="close-btn" onClick={() => setToggleSkinOverlay(false)} />
-        </div>
-      )} */}
     </div>
   );
 };
