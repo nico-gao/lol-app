@@ -1,3 +1,7 @@
+.summoner {
+  padding: 1rem;
+}
+
 .champion__info-wrapper {
   display: flex;
   flex-direction: column;
@@ -6,5 +10,5 @@
 
 .summoner__name {
   color: var(--white);
-  margin: 10px 0 0 5px;
+  margin: 5px 0 0 5px;
 }

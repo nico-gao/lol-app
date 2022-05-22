@@ -5,16 +5,17 @@ import "./Card.css";
 import images from "../../constants/images";
 
 const Card = ({ children, data, style }) => {
-  const { name, img, path, overlay, onClick, championLevel, type } = data;
+  const { name, index, img, path, overlay, onClick, championLevel, type } =
+    data;
   return (
     <div className="card__wrapper" style={style}>
       <div className="card__img">
         {!overlay && (
-          <Link to={path}>
+          <Link to={path} state={type === "skin" ? { index } : {}}>
             <img src={img} alt={name} />
           </Link>
         )}
-        
+
         {data.overlay && <img src={img} alt={name} onClick={onClick} />}
 
         {type === "summoner" && (
