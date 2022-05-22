@@ -1,6 +1,5 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { useParams } from "react-router-dom";
-import { AiOutlineClose } from "react-icons/ai";
 
 import ChampionContext from "../../store/champion-context";
 import useChampionDetail from "../../hooks/useChampionDetail";

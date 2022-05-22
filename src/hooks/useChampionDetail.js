@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import ChampionContext from "../store/champion-context";
 
 const useChampionDetail = (name ) => {
-  const { championData, detailLoaded, fetchChampionDetail, loading, error } =
+  const { detailLoaded, fetchChampionDetail, loading } =
     useContext(ChampionContext);
   const [detailLoading, setDetailLoading] = useState(true);
 
