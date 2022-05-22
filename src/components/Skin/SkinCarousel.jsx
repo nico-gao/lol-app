@@ -1,10 +1,16 @@
 import React from "react";
 
-import { MdArrowBackIosNew, MdArrowForwardIos } from "react-icons/md";
+import {
+  MdArrowBackIosNew,
+  MdArrowForwardIos,
+  MdOutlineArrowBack,
+} from "react-icons/md";
+import { Link } from "react-router-dom";
 
 import "./SkinCarousel.css";
 
 const SkinCarousel = ({
+  name,
   skins,
   currentIndex,
   prevHandler,
@@ -36,15 +42,15 @@ const SkinCarousel = ({
   console.log("indicator skins: ", indicatorSkins);
 
   const onChangeHandler = (id) => {
-    const index = skins.findIndex((skin)=>skin.id === id);
+    const index = skins.findIndex((skin) => skin.id === id);
     changeIndexHandler(index);
-  }
+  };
 
   return (
     <div className="carousel">
       <div className="carousel__wrapper">
         <div className="skin__wrapper">
-          <img className="skin__bg" src={skin.uncenteredSplashPath} alt="" />
+          <img re className="skin__bg" src={skin.uncenteredSplashPath} alt="" />
           <img
             className="skin__active"
             src={skin.uncenteredSplashPath}
@@ -54,28 +60,40 @@ const SkinCarousel = ({
       </div>
 
       <div className="carousel__nav">
-        <MdArrowBackIosNew className="arrow left-arrow" onClick={prevHandler} />
-
-        <div className="carousel__indicators">
-          {indicatorSkins.map((cur) => (
-            <img
-              className={
-                skin.id === cur.id
-                  ? "skin__indicator skin__indicator-active"
-                  : "skin__indicator skin__indicator-other"
-              }
-              src={cur.splashPath}
-              alt={cur.name}
-              key={cur.id}
-              onClick={()=>onChangeHandler(cur.id)}
-            />
-          ))}
+        <div className="carousel__nav-top">
+          <Link className="top__back" to={`/champion/${name}`}>
+            <MdOutlineArrowBack className="backBtn" />
+            <span>{name}</span>
+          </Link>
         </div>
 
-        <MdArrowForwardIos
-          className="arrow right-arrow"
-          onClick={nextHandler}
-        />
+        <div className="carousel__nav-bot">
+          <MdArrowBackIosNew
+            className="arrow left-arrow"
+            onClick={prevHandler}
+          />
+
+          <div className="carousel__indicators">
+            {indicatorSkins.map((cur) => (
+              <img
+                className={
+                  skin.id === cur.id
+                    ? "skin__indicator skin__indicator-active"
+                    : "skin__indicator skin__indicator-other"
+                }
+                src={cur.splashPath}
+                alt={cur.name}
+                key={cur.id}
+                onClick={() => onChangeHandler(cur.id)}
+              />
+            ))}
+          </div>
+
+          <MdArrowForwardIos
+            className="arrow right-arrow"
+            onClick={nextHandler}
+          />
+        </div>
       </div>
     </div>
   );

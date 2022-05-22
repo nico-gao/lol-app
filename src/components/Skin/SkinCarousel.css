@@ -37,6 +37,45 @@
 }
 
 .carousel__nav {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.carousel__nav-top {
+  z-index: 3;
+  position: absolute;
+  height: 50px;
+  width: 100%;
+  top: 0;
+  padding: 0 2rem;
+  color: var(--white);
+
+  display: flex;
+  align-items: center;
+  background: linear-gradient(rgb(84, 84, 84), 30%, transparent);
+
+}
+
+.top__back {
+  width: 100px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  cursor: pointer;
+}
+
+.top__back:hover {
+  color: var(--gold);
+}
+
+.backBtn {
+  width: 25px;
+  height: 25px;
+}
+
+.carousel__nav-bot {
   z-index: 3;
   position: absolute;
   height: 90px;
@@ -55,7 +94,11 @@
   cursor: pointer;
   width: 25px;
   height: 25px;
-  fill: white;
+  fill: var(--white);
+}
+
+.arrow:hover {
+  fill: var(--gold);
 }
 
 .carousel__indicators {

@@ -41,6 +41,7 @@ const Skins = () => {
     <div className="skins">
       {skins && (
         <SkinCarousel
+          name={name}
           skins={skins}
           currentIndex={currentIndex}
           prevHandler={prevHandler}
