@@ -21,7 +21,6 @@ const SkinCarousel = ({
   const length = skins.length;
 
   let indicatorSkins;
-  console.log(currentIndex);
 
   if (length <= 5) {
     indicatorSkins = skins;
@@ -39,7 +38,7 @@ const SkinCarousel = ({
     indicatorSkins = [...skins.slice(currentIndex - 2, currentIndex + 3)];
   }
 
-  console.log("indicator skins: ", indicatorSkins);
+  // console.log("indicator skins: ", indicatorSkins);
 
   const onChangeHandler = (id) => {
     const index = skins.findIndex((skin) => skin.id === id);
@@ -50,7 +49,7 @@ const SkinCarousel = ({
     <div className="carousel">
       <div className="carousel__wrapper">
         <div className="skin__wrapper">
-          <img re className="skin__bg" src={skin.uncenteredSplashPath} alt="" />
+          <img className="skin__bg" src={skin.uncenteredSplashPath} alt="" />
           <img
             className="skin__active"
             src={skin.uncenteredSplashPath}
@@ -69,7 +68,7 @@ const SkinCarousel = ({
 
         <div className="carousel__nav-bot">
           <MdArrowBackIosNew
-            className="arrow left-arrow"
+            className="arrow left-arrow noselect"
             onClick={prevHandler}
           />
 
@@ -90,7 +89,7 @@ const SkinCarousel = ({
           </div>
 
           <MdArrowForwardIos
-            className="arrow right-arrow"
+            className="arrow right-arrow noselect"
             onClick={nextHandler}
           />
         </div>

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import useChampionDetail from "../../hooks/useChampionDetail";
 
@@ -18,9 +18,16 @@ const Skins = () => {
   const skins = championData[name]?.skins;
   const length = skins?.length;
 
-  const currentSkin = skins?.[currentIndex];
+  console.log(skins);
 
-  console.log(currentSkin);
+  // preload imgs into cache
+  useEffect(()=> {
+    skins?.forEach((skin)=> {
+      console.log(skin);
+      new Image().src = skin.splashPath;
+    })
+  }, [skins])
+
 
   const prevHandler = () => {
     setCurrentIndex(currentIndex === 0 ? length - 1 : currentIndex - 1);

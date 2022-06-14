@@ -121,3 +121,13 @@
 .skin__indicator-active {
   outline: 2px solid var(--gold);
 }
+
+@media screen and (max-width: 450px) {
+  .carousel__indicators {
+    display: none;
+  }
+
+  .carousel__nav-bot {
+    justify-content: space-between;
+  }
+}

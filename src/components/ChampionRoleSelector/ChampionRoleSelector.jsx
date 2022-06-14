@@ -9,15 +9,11 @@ const ChampionRoleSelector = ({ roleChangeHandler }) => {
   const changeHandler = (e) => {
     const role = e.target.value;
     if (roleToggled === role) {
-      setRoleToggled(() => {
-        roleChangeHandler(null);
-        return null;
-      });
+      setRoleToggled(null);
+      roleChangeHandler(null);
     } else {
-      setRoleToggled(() => {
-        roleChangeHandler(role);
-        return role;
-      });
+      setRoleToggled(role);
+      roleChangeHandler(role);
     }
   };
 

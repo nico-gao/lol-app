@@ -31,9 +31,14 @@ const Champions = () => {
       <div className="champions__wrapper">
         {roleToggled
           ? champions
-              ?.filter((champion) =>
-                championRoles[champion.id].includes(roleToggled) ? true : false
-              )
+              ?.filter((champion) => {
+                if (championRoles[champion.id] === undefined) {
+                  return false;
+                }
+                return championRoles[champion.id].includes(roleToggled)
+                  ? true
+                  : false;
+              })
               .map((champion) => (
                 <Card data={champion} key={champion.id}>
                   <p className="p__info">{champion.name}</p>
